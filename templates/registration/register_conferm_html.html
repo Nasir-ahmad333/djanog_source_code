@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ایمیل ادرس تایید شد </title>
+	<link rel="stylesheet" type="text/css" href="{% static 'registration/login/css/register_confirm.css' %}">
+</head>
+<body>
+   <h2>
+	   ایمیل آدرس با موفقیت تایید شد 
+   </h2>
+  <p>
+    ایمیل شما با موفقیت تایید شد اکانت شما فعال است  تشکر از اینکه در ویب سایت ما ثبت نام کردید برای ورود به سایت <a href="{% url 'login' %}">کلیک</a> کنید 
+</p>
+</body>
+</html>

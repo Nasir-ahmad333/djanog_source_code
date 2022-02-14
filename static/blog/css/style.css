@@ -1,0 +1,420 @@
+@import url(fonts.css);
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    direction: rtl;
+    text-align: right;
+    font-family: 'tanha';
+    overflow-x: hidden;
+}
+li{
+    list-style: none;
+}
+li a{
+    text-decoration: none;
+    color: #fff;
+} 
+a{
+    text-decoration: none;
+}
+/* --------------------------------- start site header style  */
+header {
+    width: 100%;
+    height: 350px;
+    background-color: gray;
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: multiply;
+}
+
+/* --------------------------------- end site header style  */
+/* ---------------------------------- navbar style start  -------------------------------------- */
+.nav-wrapper{
+    width: 100%;
+    height: 60px;
+    background-color: #fff !important;
+    overflow: hidden;
+    z-index: 100000 !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+} 
+.nav-wrapper.sticky{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: 100000;    
+    box-shadow: -2px 1px 13px #000;
+}
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px 40px;
+    align-items: flex-start;
+    flex-direction: column;
+    height: 60px;
+    transition: 0.5s;
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20000000;
+}
+nav.active{
+    height: initial;
+}
+.myButton{
+    padding: 7px 10px;
+    border: solid #aaa 0.5px;
+    font-size: 12px;
+    color: #555;
+    border-radius: 3px;
+    cursor: pointer;
+    position: absolute;
+    left: 25px;
+    top: 12.5px;
+}
+.myButton > i {
+    font-size: 7px;
+}
+nav div.logo {
+    font-size: 17px;
+    margin-top: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-top: -5px;
+    min-width: 600px !important;
+    text-align: left;
+    justify-content: flex-start !important;
+}
+
+nav div a {
+    text-decoration: none;
+    color: #000;
+    line-height: 50px;
+}
+nav div.logo .profile {
+    color: #000;
+}
+.nav-wrapper.sticky nav div.logo a,
+.nav-wrapper.sticky nav div.logo a span,
+.nav-wrapper.sticky nav div.logo .profile ,
+.nav-wrapper.sticky nav div.logo {
+    color: #000 !important;
+}
+.search-box{
+    position: absolute;
+    margin-top: 20px;
+    flex-direction: row;
+    width: 300px;
+    display: none;
+    top: 40px;
+    left: -18px;
+}
+#search-box.active ~ .search-box{
+    display: flex !important;
+}
+nav > ul {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top:  0 !important;
+}
+li > ul {
+    display: none;
+    margin-right: 30px;
+}
+nav > ul > li {
+    list-style: none;
+    margin: 7px 0 ;
+}
+nav > ul > li  a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+}
+div.sticky nav  ul  li  a {
+    color: #000 !important;
+}
+nav ul li span{
+    position: relative;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    transform: rotate(-45deg) translateX(-15px) translateY(-10px);
+    transition: 0.5s;
+    cursor: pointer;
+}
+li.active >  span{
+    transform: rotate(-130deg) translateX(5px) translateY(-10px);
+}
+li.active > ul {
+    display: block;
+}
+.nav-wrapper.sticky >  nav > ul > li > a {
+    color: #000;
+}
+/* --------------------------------- start responsive navbar style  */
+@media (min-width: 991px){
+    header {
+        height: 450px;
+    }
+    .profile {
+        min-width: 200px !important;
+    }
+    a {
+        color: #fff !important;
+        text-decoration: none !important;
+    }
+    header {
+        width: 100%;
+    }
+    .nav-wrapper {
+        background-color: #ff000000;
+        overflow: auto;
+    }
+    .myButton {
+        display: none;
+    }
+    li > ul {
+        margin: 0 !important;
+    }
+    li{
+        position: relative;
+    }
+    li span {
+        display: none !important;
+    }
+    nav {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 0 0 5px 5px;
+        box-shadow: none;
+        width: 100%;
+        overflow: visible;
+    }
+    nav div.logo {
+        color: #fff;
+        font-size: 1.2rem;
+        min-width: 102px;
+    } 
+    nav > ul {
+        flex-direction: row;
+        justify-content: flex-end;
+        height: 60px;
+    }
+    nav > ul > li{
+        padding: 10px 20px;
+    }
+    nav > ul > li > ul {
+        margin-top: 10px !important;
+        position: absolute;
+        flex-direction: column;
+        right: 0;
+    }
+    ul li{
+        transition: 0.5s;
+    }
+    ul li:hover{
+        background-color: #5272bcba;
+    }
+    li:hover > ul{
+        display: flex;
+    }
+    nav > ul > li > ul > li  ul {
+        position: absolute;
+        flex-direction: column;
+        left: 100%;
+        top: 0;
+    }
+    li > ul  li {
+        padding: 15px;
+    }
+    li > ul {
+      background-color: #fff;
+    }
+    nav ul li ul li a {
+      color: #000 !important;
+    }
+    .search-box{
+        position: absolute;
+        margin-top: 20px;
+        flex-direction: row;
+        width: 300px;
+        display: none;
+    }
+    #search-box.active ~ .search-box{
+        display: flex !important;
+    }
+    .logo,
+    .logo a,
+    li a {
+      color: #000 !important;
+    }
+}
+/* --------------------------------- site title style start ---------------------------------------------  */
+
+header h1.site-title{
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 2rem;
+    text-shadow: 0 0 5px #aaa;
+    position: absolute;
+    top: 220px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/* --------------------------------- site title style end ---------------------------------------------  */
+/* --------------------------------- main content style start  ---------------------------------------------  */
+main.container{
+    max-width: 650px;
+    margin-top: 60px;
+    padding: 0 30px;
+}
+.text-container{
+    width: 100%;
+}
+.text-container > h2 {
+    font-size: 1.7rem;
+}
+.main-content{
+    text-align: justify;
+    font-size: 0.8rem;
+    color: #4A4A4A;
+}
+.time-exp{
+    text-align: left;
+    color : #999;
+    font-size: 13px;
+}
+.time-exp > span > a{
+    color: #555 !important;
+    text-decoration: none;
+}
+.category > a {
+    text-decoration: none;
+    color: #4A4A4A !important;
+    font-size: 0.8rem;
+}
+@media (min-width: 768px){
+    main.container{
+        max-width: 800px;
+    }
+    .text-container > h2 {
+        font-size: 2rem;
+    }
+    .main-content{
+        font-size: 1rem;
+    }
+    .time-exp{
+        font-size: 15px;
+    }
+    .time-exp > span > a{
+        text-decoration: none;
+    }
+    .category > a {
+        font-size: 0.9rem;
+    }
+}
+/* --------------------------------- pagenation style start  ---------------------------------------------  */
+.pagenation{
+    width: 100%;
+    text-align: left;
+    padding: 20px 0;
+}
+.pagenation span {
+    background-color: #2e5fff;
+    padding: 5px 10px;
+    margin: 1px;
+    border-radius: 2px;
+    font-size: 0.7rem;
+    color: #fff;
+    cursor: pointer;
+}
+.pagenation span:active{
+    background-color: #003cff;
+}
+@media (min-width: 786px){
+    .pagenation span {
+        font-size: 1rem;
+    }
+} 
+/* --------------------------------- pagenation style end  ---------------------------------------------  */
+/* --------------------------------- main content style end  ---------------------------------------------  */
+/* --------------------------------- fotter style start   ---------------------------------------------  */
+footer {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-top: solid #7f7f7f 1px;
+}
+footer > div.icon-wrapper{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+footer > div.icon-wrapper > i {
+    font-size: 40px;
+    margin: 0 15px;
+    cursor: pointer;
+    color: #000;
+}
+footer > div.icon-wrapper > i:hover {
+    color: #585858;
+}
+/* --------------------------------- fotter style end   ---------------------------------------------  */
+/* ----------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------  Home page style end   ------------------------------------------------ */
+/* ----------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------- */
+/* -----------------------------------------------  detail page style start  -------------------------------------------- */
+
+
+header > .time-exp{
+    position: absolute;
+    top: 250px;
+    right: 50%;
+    transform: translateX(50%);
+    color: #d5d5d5;
+    font-size: 1rem;
+}
+header > .time-exp > span > a {
+    color: #fff;
+}
+
+
+/*----------------------------------------------------------------  coustom css -----------------------*/
+img {
+    width: 100% !important;
+}
+.container > p {
+    text-align: justify !important;
+}

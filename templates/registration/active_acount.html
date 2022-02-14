@@ -1,0 +1,4 @@
+{% autoescape off %}  
+سلام  {{ user.username }},  
+لصفا لابای لینک ذیل برای تاییید ایمیل خود کلیک کنید,http://{{ domain }}{% url 'activate' uidb64=uid token=token %}    
+{% endautoescape %}

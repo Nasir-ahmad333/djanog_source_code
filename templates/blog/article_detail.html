@@ -1,0 +1,53 @@
+{% extends 'blog/base.html' %}
+{% load base_tags %} 
+{% load static %}
+{% load comment_tags %} 
+{% load ratings %}
+{% load humanize %}
+ 
+{% block pagetitle %}{{object.title}}{% endblock %}
+{% block title %}{{object.title}}{% endblock %}
+
+{% block main_header %}
+    <header style="background-image: url({{object.thumbnail.url}});">
+        {% category_navbar request %}
+        <h1 class="site-title" style=" margin-top: -70px ;">
+            {{object.title}}
+        </h1>
+        <div class="time-exp" style="text-align:center; margin-top: -70px ;">
+            {% if object.is_special %}
+                <span class="badge " style="background-color:red">
+                    ویژه
+                </span>
+            {% endif %}
+            نوشته شده توسط : 
+            <span class="author-name"><a style="color: #ddd !important;" href="{% url 'blog:author' object.author.username %}">{{object.author.get_full_name}}</a></span>
+            <span class="article-time">
+                {{object.publish|naturaltime}}
+            </span><br>
+            {% ratings object %}
+            <br>
+            بازدید ها : {{ object.hits.count }} 
+        </div>
+    </header>
+{% endblock %}
+{% block main %} 
+    <main class="container">
+        <div class="text-container"></div>
+            <p class="main-content">
+                {% if object.is_special %}
+                    {% if request.user.is_superuser or object.author == user or request.user.is_special_user %}
+                        {{object.descripiton|safe|linebreaks}}
+                    {% else %}
+                    {{article.descripiton|safe|striptags|truncatewords:30}}
+                    <p class="alert alert-warning">این یک مقاله ویژه است و برای تماشای  ان باید اشتراک ویژه خریداری کنید</p>
+                    {% endif %}
+                {% else %}
+                    {{object.descripiton|safe|linebreaks}}    
+                {% endif %}
+            </p>
+            {% render_comments object request %}
+    </main>
+{% endblock %} 
+
+

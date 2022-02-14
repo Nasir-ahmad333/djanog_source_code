@@ -1,0 +1,64 @@
+<div class="nav-wrapper">
+    <nav class="container"> 
+        <div class="logo">
+            {% if not request.user.id == None %}
+                <a href="{% url 'account:profile' %}" target="_blank" class="profile">
+                    <img src="{{request.user.user_photo.url}}" style="width: 50px !important; height:50px !important; border-radius: 50%;">
+                    <span>{{request.user.get_full_name}}</span>
+                </a>
+            {% else %}
+                <a href="{% url 'login' %}">ورود </a>/
+                <a href="{% url 'register' %}">ثبت نام </a>
+            {% endif %}
+        </div>
+        <div class="myButton d-lg-none"><i class="fa fa-bars"></i> مینو</div>
+        <ul>
+            <li><a href="{% url 'blog:home' %}">خانه</a>
+                <span></span>
+                <ul>
+                    <li>
+                        <a href="#">پربازدید ترین</a>
+                        <span></span>
+                        <ul>
+                            {% for popular_article in popular_article %}
+                                <li>
+                                    <a href="{% url 'blog:detail' popular_article.slug %}">{{popular_article.title|truncatewords:3}}</a>
+                                </li>
+                            {% endfor %}                    
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">مقالا داغ ماه</a>
+                        <span></span>
+                        <ul>
+                            {% for hot_article in hot_article %}
+                                <li>
+                                    <a href="{% url 'blog:detail' hot_article.slug %}">{{hot_article.title|truncatewords:3}}</a>
+                                </li>
+                            {% endfor %}                    
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" id="search-box">جستجو</a>
+                <div class="search-box">
+                    <form action="{% url 'blog:search' %}">
+                        <input type="text" name="q">
+                        <button type="submit" class="btn btn-success" style="font-size: 10px;">جستجو</button>
+                    </form>
+                </div>
+            </li>
+            {% for cate in category %}
+                {% if cate.parent == None %}
+                    <li><a href="{% url 'blog:category' cate.slug %}">{{cate.title}}</a>
+                        <span></span>
+                        {% if cate.children.all %}
+                            {% include 'blog/parsial/category_navbar_loop.html' %}
+                        {% endif %}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </nav>
+</div>

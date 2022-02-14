@@ -1,0 +1,11 @@
+{% extends 'blog/list.html' %}
+
+{% block header_2 %}خانه{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block next_page_number %}{% url 'blog:home'  page_obj.next_page_number %}{% endblock %}
+{% block previous_page_number %}{% url 'blog:home'  page_obj.previous_page_number %}
+{% endblock %}

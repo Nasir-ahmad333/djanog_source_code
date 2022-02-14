@@ -1,0 +1,77 @@
+{% extends 'registration/base.html' %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{%block title%}لیست مقالات{% endblock %}
+
+{% block main %}
+	<form method="post" enctype="multipart/form-data">{% csrf_token %}
+		<div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+	            <div class="card-header">
+	                <h3 class="card-title float-right">اضافه کردن مقاله</h3>
+	            </div>
+				<div class="card-body">
+					<form method="post" enctype="multipart/form-data" >{% csrf_token %}
+						<div class="row">
+							<div class="col-6">
+								{{form.title|as_crispy_field}}
+							</div>
+							<div class="col-6">
+								{{form.slug|as_crispy_field}}
+							</div>
+							<div class="col-12">
+								{{form.descripiton|as_crispy_field}}
+							</div>
+							<div class="col-6">
+								{{form.category|as_crispy_field}}
+							</div>
+							<div class="col-6">
+								{{form.thumbnail|as_crispy_field}}
+								{{form.publish|as_crispy_field}}
+							</div>
+							{% if request.user.is_superuser %}
+								<div class="col-6">
+									{{form.author|as_crispy_field}}
+								</div>
+								<div class="col-6">
+									{{form.status|as_crispy_field}}
+								</div>
+							{% elif request.user.is_author %}
+								<div class="col-6">
+								    <div id="div_id_status" class="form-group">
+									        <label for="id_status" class=" requiredField">
+									           حالت<span class="asteriskField">*</span>
+									        </label>
+									        <div class="">
+									            <select name="status" class="select form-control" required="" id="id_status">
+									                <option value="" selected="">---------</option>
+									                <option value="d">پیش نویس</option>
+									                <option value="i">ارسال برای ادمین</option>
+									            </select>
+									        </div>            
+									    </div>
+									</div> 
+								</div>
+							{% endif %}
+							<div class="col-6">
+								{{form.is_special|add_class:'px-3'|as_crispy_field}} 
+							</div>
+							<div class="col-12">
+								<button class="btn btn-primary mb-3">
+									ارسال مقاله
+								</button>
+								{% if request.resolver_match.kwargs.pk and user.is_superuser %}
+									<a href="{% url 'account:article-delete' request.resolver_match.kwargs.pk %}" class="btn btn-danger text-white mb-3">
+									حذف مقاله
+									</a>
+								{% endif %}
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+        </div>
+	</form>
+{%  endblock %}

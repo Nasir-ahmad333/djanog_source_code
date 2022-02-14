@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Logout</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'registration/logout/style.css' %}">
+</head>
+<body>
+	<header>
+        <h1>احمدی سایت</h1>
+    </header>
+    <main>
+        <p>با موفقیت خارج شدید</p>
+        <p>با تشکر از اینکه وقت گرانبهای خود را در اختیار ما گذاشتید (:</p>
+        <p>برای ورود دوباره اینجا را <a href="{% url 'login' %}">کلیک</a> کنید  </p>
+    </main>
+</body>
+</html>

@@ -1,0 +1,27 @@
+@font-face{
+	font-family: 'tanha';
+	src: url(../fonts/Tanha.ttf);
+}
+body{
+	direction: rtl !important;
+	text-align: right !important;
+	font-family: 'tanha' !important;
+}
+.btn-show-pass{
+	right: initial;
+	left: 0;
+}
+.login100-form-title {
+	font-family: 'tanha' !important;
+}
+.input100{
+	font-family: 'tanha' !important;
+}
+.login100-form-btn {
+    font-family: tanha;
+}
+.errors > p {
+    background-color: #ff00002e;
+    padding: 10px 15px;
+    font-family: 'tanha';
+}

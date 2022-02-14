@@ -1,0 +1,21 @@
+<ul>
+	{% for cate in cate.children.all %}
+        <li>
+        	<a href="{% url 'blog:category' cate.slug %}">{{cate.title}}</a>
+            <span></span>
+            {% if cate.children.all %}
+                {% include 'blog/parsial/category_navbar_loop.html' %}
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+
+
+
+
+
+
+
+
+

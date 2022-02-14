@@ -1,0 +1,70 @@
+{% extends 'blog/base.html' %}
+{% load base_tags %} 
+{% load static %}
+{% load ratings %}
+{% load humanize %}
+
+{% block title %} | {% block header_2 %}{% endblock %}{% endblock %}
+{% block main_header %}
+<header style="background-image: url({% static 'blog/assets/img/bg.jpg' %});">
+    {% category_navbar request %}
+    <h1 class="site-title" style="color: #fff;">گلکسی</h1>
+</header>
+{% endblock %}
+{% block main %} 
+    <main class="container">
+        {% block header %}{% endblock %}
+        {% for article in object_list %}
+            <div class="text-container">
+                <a href="{% url 'blog:detail' article.slug %}">
+                    <h1 style="color: #000; font-size: 1.5rem;">{{article.title}}
+                        {% if article.is_special %}
+                            <span class="badge " style="background-color:red; font-size: 12px;">
+                                ویژه
+                            </span>
+                        {% endif %}
+                    </h1>
+                    {%if request.user.id != None %}
+                        {% ratings article %}
+                    {% endif %}
+                    <p class="main-content">
+                        {{article.descripiton|safe|striptags|truncatewords:30}}
+                    </p>
+                </a>
+                <div class="time-exp">
+                    نوشته شده توسط :<span class="author-name"><a href="{% url 'blog:author' 'nasir' %}">{{article.author.get_full_name}}</a></span>
+                    <span class="article-time">
+                        {{article.publish|naturaltime}}
+                    </span>
+                </div>
+                <div class="category">
+                    {% for cate in article.category.all%}
+                        <a href="{% url 'blog:category' cate.slug %}">
+                            #{{cate.title}}
+                        </a>
+                    {% endfor %}
+                    <br>
+                    بازدید ها  : {{ article.hits.count }}
+                </div>
+            </div>
+            <hr>
+        {% empty %}
+        <p>
+            متاسفانه محتویات برای نمایش وجود ندارد
+        </p>
+        {% endfor %}
+        <!-- pager -->
+        <div class="pagenation">
+            {% if page_obj.has_next %}
+                <span class="next-page">
+                    <a href="{% block next_page_number %}{% endblock %}">پوست های جدید</a>
+                </span>
+            {% endif %}
+            {% if page_obj.has_previous %}                
+                <span class="pre-page">
+                    <a href="{% block previous_page_number %}{% endblock %}">پوست های گذشته</a>
+                </span>
+            {% endif %}
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'registration/register.html' %}
+{% load static %}
+
+{% block coustomCss %}
+	<link rel="stylesheet" type="text/css" href="{% static 'registration/login/css/model.css' %} ">
+{% endblock %}
+
+
+{% block model %}
+<div class="model">
+	<div class="main-content">
+		<h3>در خواست  با موفقیت ارسال شد
+			<a href="{% url 'blog:home' %}" ></a>
+		</h3>
+		<hr>
+		<p>در خواست شما موفقانه ارسال گردید برای تایید ادرس ایمیل  وارد ایمیل خود شده و بالای لینک ارسال شده کلیک کنید </p>
+	</div>
+</div>
+{% endblock %}

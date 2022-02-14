@@ -1,0 +1,16 @@
+{% extends 'blog/list.html' %}
+
+{% block pagetitle %}{{category.title}}{% endblock %}
+{% block header_2 %}{{category.title}}{% endblock %}
+
+{% block header %}
+	<div class="text-center w-100" style="background-color: #7ba3d1;">
+	    <p class="p-2 ">
+	        دسته بندی : {{category.title}}
+	    </p>
+	</div>
+{% endblock %}
+
+{% block next_page_number %}{% url 'blog:category' category.slug  page_obj.next_page_number %}{% endblock %}
+{% block previous_page_number %}{% url 'blog:category' category.slug  page_obj.previous_page_number %}
+{% endblock %}

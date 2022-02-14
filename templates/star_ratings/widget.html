@@ -1,0 +1,8 @@
+{% extends "star_ratings/widget_base.html" %}
+{% block rating_detail %}
+	{% if request.user.id == None %}
+		<div>
+			برای رای دادن باید وارد شوید
+		</div>
+	{% endif %}
+{% endblock %} 

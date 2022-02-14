@@ -1,0 +1,16 @@
+{% extends 'blog/list.html' %}
+
+{% block pagetitle %}{{author.get_full_name}}{% endblock %}
+{% block header_2 %}{{author.get_full_name}}{% endblock %}
+
+{% block header %}
+	<div class="text-center w-100" style="background-color: #7ba3d1;">
+	    <p class="p-2 ">
+	        نویسنده: {{author.get_full_name}}
+	    </p>
+	</div>
+{% endblock %}
+
+{% block next_page_number %}{% url 'blog:author' author.username  page_obj.next_page_number %}{% endblock %}
+{% block previous_page_number %}{% url 'blog:author' author.username  page_obj.previous_page_number %}
+{% endblock %}
